@@ -12,23 +12,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.UsuarioDao;
-import modelo.Usuario;
+import dao.CandidatoDao;
+import modelo.Candidato;
 
 
 /**
  * Servlet implementation class UsuarioServlet
  */
 @WebServlet("/")
-public class UsuarioServlet extends HttpServlet {
+public class CandidatoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private UsuarioDao usuarioDao;
+	private CandidatoDao candidatoDao;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UsuarioServlet() {
+    public CandidatoServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,7 +37,7 @@ public class UsuarioServlet extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		this.usuarioDao = new UsuarioDao();
+		this.candidatoDao = new CandidatoDao();
 		
 	}
 
@@ -94,13 +94,15 @@ public class UsuarioServlet extends HttpServlet {
 	
 	private void insertarUsuario(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, SQLException, IOException{
+		String documento = request.getParameter("documento");
 		String nombre = request.getParameter("nombre");
-		String email = request.getParameter("email");
-		String pais = request.getParameter("pais");
+		String apellido = request.getParameter("apellido");
+		int eleccion =  Integer.parseInt(request.getParameter("eleccion"));
+		int numero =  Integer.parseInt(request.getParameter("numero"));
 		
-		Usuario usuario = new Usuario(nombre, email, pais);
+		Candidato candidato = new Candidato(documento, nombre, apellido, eleccion, numero);
 		
-		usuarioDao.insert(usuario);
+		candidatoDao.insert(candidato);
 		
 		response.sendRedirect("list");
 		
@@ -111,9 +113,9 @@ public class UsuarioServlet extends HttpServlet {
 		
 		int id = Integer.parseInt(request.getParameter("id"));
 		
-		Usuario usuarioActual = usuarioDao.select(id);
+		Candidato candidatoActual = candidatoDao.select(id);
 		
-		request.setAttribute("usuario", usuarioActual);
+		request.setAttribute("candidato", candidatoActual);
 				
 		RequestDispatcher dispatcher = request.getRequestDispatcher("usuario.jsp");
 		dispatcher.forward(request, response);
@@ -125,14 +127,15 @@ public class UsuarioServlet extends HttpServlet {
 			throws ServletException, SQLException, IOException{
 		
 		int id = Integer.parseInt(request.getParameter("id"));
-		
+		String documento = request.getParameter("documento");
 		String nombre = request.getParameter("nombre");
-		String email = request.getParameter("email");
-		String pais = request.getParameter("pais");
+		String apellido = request.getParameter("apellido");
+		int eleccion =  Integer.parseInt(request.getParameter("eleccion"));
+		int numero =  Integer.parseInt(request.getParameter("numero"));
 		
-		Usuario usuario = new Usuario(id,nombre, email, pais);
+		Candidato candidato = new Candidato(id, documento, nombre, apellido, eleccion, numero);
 		
-		usuarioDao.update(usuario);
+		candidatoDao.update(candidato);
 		
 		response.sendRedirect("list");
 		
@@ -144,7 +147,7 @@ public class UsuarioServlet extends HttpServlet {
 			throws ServletException, SQLException, IOException{
 		int id = Integer.parseInt(request.getParameter("id"));
 								
-		usuarioDao.delete(id);
+		candidatoDao.delete(id);
 				
 		response.sendRedirect("list");
 	}
@@ -152,7 +155,7 @@ public class UsuarioServlet extends HttpServlet {
 	private void listUsuarios(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, SQLException, IOException{
 				 
-		List <Usuario> listUsuarios = usuarioDao.selectAll();
+		List <Candidato> listUsuarios = candidatoDao.selectAll();
 		request.setAttribute("listUsuarios", listUsuarios);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("usuariolist.jsp");
