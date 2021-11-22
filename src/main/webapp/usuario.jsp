@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Aplicación Gestión de Usuarios</title>
+<title>Elecciones Electronicas</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
  rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
  crossorigin="anonymous">
@@ -15,10 +15,10 @@
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark" style="background-color: tomato">
 			<div>
-				<a href="#" class="mavbar-brand">Gestión de Usuarios</a>
+				<a href="#" class="mavbar-brand">Gestión de Candidatos</a>
 			</div>
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list" class="nav-link">Usuarios</a></li>
+				<li><a href="<%=request.getContextPath()%>/list" class="nav-link">Candidatos</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -27,38 +27,46 @@
 		<div class="card">
 			<div class="card-body">
 			
-				<c:if test="${usuario != null}">
+				<c:if test="${candidato != null}">
 					<form action="update" method="post">
 				</c:if>
-				<c:if test="${usuario == null}">
+				<c:if test="${candidato == null}">
 					<form action="insert" method="post">
 				</c:if>
 				
 				<caption>
 					<h2>
 						<c:if test="${usuario != null}">
-							Editar Usuario
+							Editar Candidato
 						</c:if>
 						<c:if test="${usuario == null}">
-							Agregar Nuevo Usuario
+							Agregar Nuevo Candidato
 						</c:if>
 					</h2>
 				</caption>
 				
-				<c:if test="${usuario != null}">
-					<input type="hidden" name="id" value="<c:out value='${usuario.id}'/>"/>
+				<c:if test="${candidato != null}">
+					<input type="hidden" name="id" value="<c:out value='${candidato.id}'/>"/>
 				</c:if>
 				
 				<fieldset class="form-group">
-					<label>Nombre de Usuario</label> <input type="text" value="<c:out value='${usuario.nombre}'/>" class="form-control" name="nombre" required="required">
+					<label>Documento del candidato</label> <input type="text" value="<c:out value='${candidato.documento}'/>" class="form-control" name="documento" required="required">
 				</fieldset>
 				
 				<fieldset class="form-group">
-					<label>Email de Usuario</label> <input type="text" value="<c:out value='${usuario.email}'/>" class="form-control" name="email">
+					<label>Nombre del candidato</label> <input type="text" value="<c:out value='${candidato.nombre}'/>" class="form-control" name="nombre" required="required">
 				</fieldset>
 				
 				<fieldset class="form-group">
-					<label>Pais del Usuario</label> <input type="text" value="<c:out value='${usuario.pais}'/>" class="form-control" name="pais">
+					<label>Apellido del candidato</label> <input type="text" value="<c:out value='${candidato.apellido}'/>" class="form-control" name="apellido" required="required">
+				</fieldset>
+				
+				<fieldset class="form-group">
+					<label>Eleccion</label> <input type="text" value="<c:out value='${candidato.eleccion}'/>" class="form-control" name="eleccion" required="required">
+				</fieldset>
+				
+				<fieldset class="form-group">
+					<label>Numero del candidato</label> <input type="text" value="<c:out value='${candidato.numero}'/>" class="form-control" name="numerp" required="required">
 				</fieldset>
 				
 				<button type="submit" class="btn btn-success">Guardar</button>

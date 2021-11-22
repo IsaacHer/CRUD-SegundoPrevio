@@ -10,20 +10,20 @@ public class Conexion {
 	private Connection con = null;
 	private static Conexion db;
 	private PreparedStatement preparedStatement;
-	
+	/*
 	private static final String url = "postgres://mnjgxshj:Uzjqo00sxV0W9OzPEB1q3wpoVvGMbbUV@queenie.db.elephantsql.com/mn\r\n"
 			+ "jgxshj";
 	private static final String dbname = "mnjgxshj";
 	private static final String driver = "org.postgresql.Driver";
 	private static final String userName = "mnjgxshj";
 	private static final String password = "Uzjqo00sxV0W9OzPEB1q3wpoVvGMbbUV";
-	/*
+	*/
 	private static final String url = "jdbc:mysql://localhost:3306/";
-	private static final String dbname = "sistema";
+	private static final String dbname = "crudwebsegundoparcial";
 	private static final String driver = "com.mysql.jdbc.Driver";
 	private static final String userName = "root";
 	private static final String password = "";
-	*/
+
 	public Conexion() {
 		try {
 			Class.forName(driver).newInstance();

@@ -31,7 +31,7 @@
 		<!-- <div class="alert alert-success" * ngIf="message">{{message}}</div>-->
 		
 		<div class="container">
-			<h3 class="text-center">Listado de Canditdatos</h3>
+			<h3 class="text-center">Listado de Candidatos</h3>
 			<hr>
 			<div class="container text-left">
 			
@@ -51,7 +51,7 @@
 				</thead>
 				<tbody>
 					<!--  for (Todo todo: todos) { -->
-					<c:forEach var="candidato" items="${listUsuarios}">
+					<c:forEach var="candidato" items="${listCandidatos}">
 					
 					<tr>
 						<td>
@@ -61,16 +61,16 @@
 							<c:out value="${candidato.documento}"/>
 						</td>
 						<td>
-							<c:out value="${usuario.nombre}"/>
+							<c:out value="${candidato.nombre}"/>
 						</td>
 						<td>
-							<c:out value="${usuario.apellido}"/>
+							<c:out value="${candidato.apellido}"/>
 						</td>
 						<td>
-							<c:out value="${usuario.eleccion}"/>
+							<c:out value="${candidato.eleccion}"/>
 						</td>
 						<td>
-							<c:out value="${usuario.numero}"/>
+							<c:out value="${candidato.numero}"/>
 						</td>
 						
 						<td>

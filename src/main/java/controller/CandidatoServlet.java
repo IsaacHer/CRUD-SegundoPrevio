@@ -66,7 +66,7 @@ public class CandidatoServlet extends HttpServlet {
 			actualizarUsuario(request, response);
 			break;
 		default:
-			listUsuarios(request, response);
+			listCandidatos(request, response);
 			break;
 		}
 		}catch (SQLException e) {
@@ -152,11 +152,11 @@ public class CandidatoServlet extends HttpServlet {
 		response.sendRedirect("list");
 	}
 	
-	private void listUsuarios(HttpServletRequest request, HttpServletResponse response)
+	private void listCandidatos(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, SQLException, IOException{
 				 
-		List <Candidato> listUsuarios = candidatoDao.selectAll();
-		request.setAttribute("listUsuarios", listUsuarios);
+		List <Candidato> listCandidatos = candidatoDao.selectAll();
+		request.setAttribute("listCandidatos", listCandidatos);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("usuariolist.jsp");
 		dispatcher.forward(request, response);
