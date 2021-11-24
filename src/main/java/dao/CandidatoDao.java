@@ -32,8 +32,8 @@ public class CandidatoDao {
 			preparedStatement.setString(1, candidato.getDocumento());
 			preparedStatement.setString(2, candidato.getNombre());
 			preparedStatement.setString(3, candidato.getApellido());
-			preparedStatement.setInt(2, candidato.getEleccion());
-			preparedStatement.setInt(3, candidato.getNumero());
+			preparedStatement.setInt(4, candidato.getEleccion());
+			preparedStatement.setInt(5, candidato.getNumero());
 			conexion.execute();
 		}catch (SQLException e) {
 			

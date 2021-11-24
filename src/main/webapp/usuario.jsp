@@ -66,7 +66,7 @@
 				</fieldset>
 				
 				<fieldset class="form-group">
-					<label>Numero del candidato</label> <input type="text" value="<c:out value='${candidato.numero}'/>" class="form-control" name="numerp" required="required">
+					<label>Numero del candidato</label> <input type="text" value="<c:out value='${candidato.numero}'/>" class="form-control" name="numero" required="required">
 				</fieldset>
 				
 				<button type="submit" class="btn btn-success">Guardar</button>
